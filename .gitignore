@@ -1,30 +1,26 @@
-﻿# Environment files and secrets
+﻿# Environment variables and secrets
 .env
 .env.*
 !.env.example
-**/application-local.properties
-**/application-local.yml
-**/application-local.yaml
 
-# Java and Maven
-**/target/
+# Java and Maven build output
+backend/target/
 
-# Node.js and Vite
-**/node_modules/
-**/dist/
+# Test output and logs
+backend/backend-test-output.txt
+*.log
 
-# IDE files
+# Node and Vite
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# IDE and operating system files
 .vscode/
 .idea/
-
-# Logs and operating-system files
-*.log
 .DS_Store
 Thumbs.db
 
-# Keep local database credentials out of Git
-/backend/src/main/resources/application.properties
-
-# Local diagnostic and backup files
-/backend/startup-error.txt
-/frontend/src/App.backup.tsx
+# Local diagnostic output and source backups
+backend/startup-error.txt
+frontend/src/App.backup.tsx

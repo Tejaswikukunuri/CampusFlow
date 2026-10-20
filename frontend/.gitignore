@@ -1,0 +1,26 @@
+
+# Secrets and local environment configuration
+.env
+.env.*
+!.env.example
+**/application.properties
+!**/src/main/resources/application.properties.example
+**/application-local.properties
+**/application-local.yml
+**/application-local.yaml
+
+# Java and Maven
+**/target/
+
+# Node.js and Vite
+**/node_modules/
+**/dist/
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs and operating-system files
+*.log
+.DS_Store
+Thumbs.db

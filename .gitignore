@@ -1,0 +1,30 @@
+﻿# Environment files and secrets
+.env
+.env.*
+!.env.example
+**/application-local.properties
+**/application-local.yml
+**/application-local.yaml
+
+# Java and Maven
+**/target/
+
+# Node.js and Vite
+**/node_modules/
+**/dist/
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs and operating-system files
+*.log
+.DS_Store
+Thumbs.db
+
+# Keep local database credentials out of Git
+/backend/src/main/resources/application.properties
+
+# Local diagnostic and backup files
+/backend/startup-error.txt
+/frontend/src/App.backup.tsx

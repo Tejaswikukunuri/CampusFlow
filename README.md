@@ -1,57 +1,83 @@
-﻿# CampusFlow — Student Academic Dashboard
+﻿# CampusFlow
+### Academic Risk & Student Success Platform
 
-CampusFlow is a student academic monitoring dashboard built to help educators track student performance and identify students who may need additional academic support.
+CampusFlow is a full-stack web application designed to help monitor student academic indicators, identify students who may need additional support, and provide insights through a centralized dashboard.
 
 ## Features
 
-- Academic overview and student risk monitoring
-- Risk classifications: HIGH, WATCH, and ON_TRACK
-- Student record management
-- Search and filtering
-- Academic insights
-- CSV export
-- Session-based authentication for protected student operations
+- **Student Management:** Create, view, update, and delete student records.
+- **Academic Risk Assessment:** Calculate a student health score using attendance, assignment completion, and academic performance.
+- **Risk Classification:** Categorize students as `HIGH`, `WATCH`, or `ON_TRACK` based on defined scoring rules.
+- **Explainable Insights:** Display indicators that may require attention, such as low attendance or assignment completion.
+- **Search and Filtering:** Find students and filter records by department or risk status.
+- **Analytics Dashboard:** Review student metrics and compare academic indicators.
 
 ## Technology Stack
 
-- **Frontend:** React, Vite, TypeScript, Tailwind CSS 4
-- **Backend:** Java 17, Spring Boot
-- **Database:** PostgreSQL
-- **Build tools:** npm and Maven
-- **Version control:** Git
+**Frontend**
+- React
+- TypeScript
+- Vite
+- CSS / Tailwind utility classes
 
-## Prerequisites
+**Backend**
+- Java 17
+- Spring Boot
+- Spring Data JPA
+- Maven
 
-Install Java 17, Node.js with npm, PostgreSQL, and Git.
+**Database**
+- PostgreSQL
 
-## Database Configuration
+## Risk Assessment Logic
 
-Create a PostgreSQL database named `campusflow`.
+CampusFlow calculates the health score using a weighted formula:
 
-Configure these environment variables in the PowerShell session used to start the backend:
+`Health Score = (Attendance × 0.40) + (Assignment Completion × 0.30) + (Performance × 0.30)`
 
-- `DB_URL` — defaults to `jdbc:postgresql://localhost:5432/campusflow`
-- `DB_USERNAME` — defaults to `postgres`
-- `DB_PASSWORD` — your PostgreSQL password
+The resulting score is classified as:
 
-Never commit real passwords or credentials to Git.
+- **HIGH:** Score below 60
+- **WATCH:** Score from 60 to 74
+- **ON_TRACK:** Score of 75 or above
 
-## Run the Backend
+Additional insights are generated from individual academic indicators. These scores are intended to support review and intervention, not to make definitive judgments about students.
 
-From the project root:
+## Getting Started
+
+### Prerequisites
+
+- Java 17 or compatible configured JDK
+- Node.js and npm
+- PostgreSQL
+
+### 1. Clone the repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd CampusFlow
+```
+
+Replace the placeholder with your actual repository URL after publishing the project.
+
+### 2. Configure PostgreSQL
+
+Create a PostgreSQL database named `campusflow` and configure the database connection in `backend/src/main/resources/application.properties`.
+
+Keep database passwords and other secrets out of version control.
+
+### 3. Start the backend
+
+Open a terminal:
 
 ```powershell
 cd backend
 .\mvnw.cmd spring-boot:run
 ```
 
-Backend health endpoint: http://localhost:8080/api/health
+### 4. Start the frontend
 
-Student risk endpoint: http://localhost:8080/api/students/risk
-
-## Run the Frontend
-
-Open a second terminal from the project root:
+Open a second terminal:
 
 ```powershell
 cd frontend
@@ -59,52 +85,29 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite, normally http://localhost:5173/.
+Open the local URL displayed by Vite in your browser.
 
-## Run Tests
+## API Overview
 
-Backend tests:
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/students` | Retrieve student records |
+| GET | `/api/students/{id}` | Retrieve a student by ID |
+| POST | `/api/students` | Create a student record |
+| PUT | `/api/students/{id}` | Update a student record |
+| DELETE | `/api/students/{id}` | Delete a student record |
+| GET | `/api/students/risk` | Retrieve academic risk assessments |
+
+## Testing
+
+Run the backend tests:
 
 ```powershell
 cd backend
 .\mvnw.cmd test
 ```
 
-Frontend production build:
+## Project Goal
 
-```powershell
-cd frontend
-npm run build
-```
+CampusFlow demonstrates full-stack development, REST API design, relational database integration, student record management, and explainable rule-based academic risk assessment.
 
-## Academic Health Score
-
-The current scoring model combines three indicators:
-
-- Attendance: 40%
-- Assignment completion: 30%
-- Performance: 30%
-
-Formula:
-
-`Health Score = Attendance × 0.40 + Assignment Completion × 0.30 + Performance × 0.30`
-
-The score is rounded to the nearest whole number.
-
-| Score | Classification |
-|---|---|
-| Below 60 | HIGH |
-| 60 to below 75 | WATCH |
-| 75 and above | ON_TRACK |
-
-These classifications are indicators for academic support, not substitutes for educator judgment.
-
-## Security
-
-- Keep database credentials outside version control.
-- Review authentication and authorization before deployment.
-- Do not publish secrets, passwords, or private configuration.
-
-## Project Status
-
-CampusFlow is an academic dashboard project under development.

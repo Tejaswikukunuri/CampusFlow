@@ -54,7 +54,7 @@ Additional insights are generated from individual academic indicators. These sco
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/Tejaswikukunuri/CampusFlow.git
 cd CampusFlow
 ```
 
